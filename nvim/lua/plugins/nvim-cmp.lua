@@ -9,14 +9,25 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
+		{
+			"L3MON4D3/LuaSnip",
+			-- follow latest release.
+			version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+			-- install jsregexp (optional!).
+			build = "make install_jsregexp",
+		},
 	},
 	config = function()
 		local cmp = require("cmp")
+		require("luasnip.loaders.from_vscode").lazy_load()
 		cmp.setup({
+			completion = {
+				completeopt = "menu,menuone,preview",
+			},
 			snippet = {
 				-- REQUIRED by nvim-cmp. get rid of it once we can
 				expand = function(args)
-					vim.fn["vsnip#anonymous"](args.body)
+					require("luasnip").lsp_expand(args.body)
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
@@ -30,6 +41,7 @@ return {
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "buffer" },
+				{ name = "luasnip" },
 				{ name = "path" },
 			}),
 			experimental = {
