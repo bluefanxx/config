@@ -33,7 +33,7 @@ vim.opt.undofile = false
 -- always draw sign column. prevents buffer moving when adding/deleting sign
 vim.opt.signcolumn = "yes"
 -- never show me line breaks if they're not there
-vim.opt.wrap = false
+vim.opt.wrap = true
 -- sweet sweet relative line numbers
 vim.opt.relativenumber = true
 -- and show the absolute line number for the current line
