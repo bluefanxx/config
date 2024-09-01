@@ -103,6 +103,11 @@ return {
 					})
 				end,
 			})
+
+			lspconfig.elixirls.setup({
+				cmd = { "/Users/pramitgaha/.config/elixir-ls/language_server.sh" },
+				capabilities = capabilities,
+			})
 		end,
 	},
 	{
